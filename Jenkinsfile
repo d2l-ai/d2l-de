@@ -12,7 +12,7 @@ stage("Build and Publish") {
       checkout scm
       // conda environment
       // def ENV_NAME = "${TASK}-${EXECUTOR_NUMBER}";
-      def ENV_NAME = "d2l-de-master-0"  // anaconda is down.
+      def ENV_NAME = "d2l-en-master-0"  // anaconda is down.
       // assign two GPUs to each build
       def EID = EXECUTOR_NUMBER.toInteger()
       def CUDA_VISIBLE_DEVICES=(EID*2).toString() + ',' + (EID*2+1).toString();
