@@ -11,15 +11,16 @@ stage("Build and Publish") {
     ws("workspace/${TASK}") {
       checkout scm
       // conda environment
-      def ENV_NAME = "${TASK}-${EXECUTOR_NUMBER}";
+      // def ENV_NAME = "${TASK}-${EXECUTOR_NUMBER}";
+      def ENV_NAME = "d2l-de-master-0"  // anaconda is down.
       // assign two GPUs to each build
       def EID = EXECUTOR_NUMBER.toInteger()
       def CUDA_VISIBLE_DEVICES=(EID*2).toString() + ',' + (EID*2+1).toString();
 
       sh label: "Build Environment", script: """set -ex
-      conda env update -n ${ENV_NAME} -f static/build.yml
-      pip list
-      nvidia-smi
+      # conda env update -n ${ENV_NAME} -f static/build.yml
+      # pip list
+      # nvidia-smi
       """
 
       sh label: "Sanity Check", script: """set -ex
