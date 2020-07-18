@@ -1,4 +1,4 @@
-# Vorrunden
+#  Vorbereitungen
 :label:`chap_preliminaries`
 
 Um mit Deep Learning zu beginnen, müssen wir einige grundlegende Fähigkeiten entwickeln. Das gesamte maschinelle Lernen beschäftigt sich mit dem Extrahieren von Informationen aus Daten. So werden wir damit beginnen, die praktischen Fähigkeiten zum Speichern, Manipulieren und Vorverarbeiten von Daten zu erlernen.
@@ -11,7 +11,7 @@ Als nächstes geht es maschinelles Lernen darum, Vorhersagen zu machen: Was ist 
 
 Am Ende enthält die offizielle Dokumentation viele Beschreibungen und Beispiele, die über dieses Buch hinausgehen. Zum Abschluss des Kapitels zeigen wir Ihnen, wie Sie die Dokumentation für die benötigten Informationen nachschlagen können.
 
-Dieses Buch hat den mathematischen Inhalt auf das Minimum gehalten, das notwendig ist, um ein richtiges Verständnis von Deep Learning zu erhalten. Es bedeutet jedoch nicht, dass dieses Buch mathematikfrei ist. Daher bietet dieses Kapitel eine schnelle Einführung in die grundlegende und häufig verwendete Mathematik, um jedem zu ermöglichen, zumindest *die meist* des mathematischen Inhalts des Buches zu verstehen. Wenn Sie *all* der mathematischen Inhalte verstehen möchten, sollte eine weitere Überprüfung des [Online-Anhangs zur Mathematik](https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/index.html) genügen.
+Dieses Buch hat den mathematischen Inhalt auf das Minimum gehalten, das notwendig ist, um ein richtiges Verständnis von Deep Learning zu erhalten. Es bedeutet jedoch nicht, dass dieses Buch mathematikfrei ist. Daher bietet dieses Kapitel eine schnelle Einführung in die grundlegende und häufig verwendete Mathematik, um jedem zu ermöglichen, zumindest *die meist* des mathematischen Inhalts des Buches zu verstehen. Wenn Sie *all* des mathematischen Inhalts verstehen möchten, sollte eine weitere Überprüfung des [online appendix on mathematics](https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/index.html) ausreichend sein.
 
 ```toc
 :maxdepth: 2

@@ -1,11 +1,11 @@
-# Datenvorverarbeitung
+# Vorverarbeitung von Daten
 :label:`sec_pandas`
 
 Bisher haben wir eine Vielzahl von Techniken eingeführt, um Daten zu manipulieren, die bereits in Tensoren gespeichert sind. Um Deep Learning auf die Lösung von realen Problemen anzuwenden, beginnen wir oft mit der Vorverarbeitung von Rohdaten, anstatt mit den gut vorbereiteten Daten im Tensor-Format. Unter den gängigen Datenanalyse-Tools in Python wird das Paket `pandas` häufig verwendet. Wie viele andere Erweiterungspakete im riesigen Python-Ökosystem kann `pandas` mit Tensoren zusammenarbeiten. So werden wir kurz Schritte zur Vorverarbeitung von Rohdaten mit `pandas` durchlaufen und in das Tensor-Format konvertieren. Wir werden mehr Datenvorverarbeitung Techniken in späteren Kapiteln abdecken.
 
 ## Lesen des Datensatzes
 
-Als Beispiel erstellen wir zunächst ein künstliches Dataset, das in einer CSV-Datei (kommagetrennte Werte) `../data/house_tiny.csv` gespeichert ist. Daten, die in anderen Formaten gespeichert werden, können auf ähnliche Weise verarbeitet werden. Die folgende Funktion `mkdir_if_not_exist` stellt sicher, dass das Verzeichnis `../data` vorhanden ist. Beachten Sie, dass der Kommentar `# @save `eine spezielle Markierung ist, bei der die folgende Funktion, Klasse oder Anweisungen im Paket `d2l` gespeichert werden, sodass sie später direkt aufgerufen werden können (z. B. `d2l.mkdir_if_not_exist(path)`), ohne neu definiert zu werden.
+Als Beispiel erstellen wir zunächst ein künstliches Dataset, das in einer CSV-Datei (kommagetrennte Werte) `../data/house_tiny.csv` gespeichert ist. Daten, die in anderen Formaten gespeichert werden, können auf ähnliche Weise verarbeitet werden. Die folgende Funktion `mkdir_if_not_exist` stellt sicher, dass das Verzeichnis `../data` vorhanden ist. Beachten Sie, dass der Kommentar `# @save `eine spezielle Markierung ist, bei der die folgende Funktion, Klasse oder Anweisungen im `d2l` Paket gespeichert werden, sodass sie später direkt aufgerufen werden können (z. B. `d2l.mkdir_if_not_exist(path)`), ohne neu definiert zu werden.
 
 ```{.python .input}
 #@tab all
@@ -95,22 +95,24 @@ X, y
 
 ## Zusammenfassung
 
-* Wie viele andere Erweiterungspakete im riesigen Ökosystem von Python kann `pandas` mit Tensoren zusammenarbeiten. * Imputation und Löschung können verwendet werden, um fehlende Daten zu verarbeiten.
+* Wie viele andere Erweiterungspakete im riesigen Python-Ökosystem kann `pandas` mit Tensoren zusammenarbeiten.
+* Imputation und Löschung können verwendet werden, um fehlende Daten zu behandeln.
 
 ## Übungen
 
 Erstellen Sie ein Raw-Dataset mit mehr Zeilen und Spalten.
 
-1. Löschen Sie die Spalte mit den meisten fehlenden Werten. 2. Konvertieren Sie das vorverarbeitete Dataset in das Tensor-Format.
+1. Löschen Sie die Spalte mit den meisten fehlenden Werten.
+2. Konvertieren Sie das vorverarbeitete Dataset in das Tensor-Format.
 
 :begin_tab:`mxnet`
-[Diskussionen](https://discuss.d2l.ai/t/28)
+[Discussions](https://discuss.d2l.ai/t/28)
 :end_tab:
 
 :begin_tab:`pytorch`
-[Diskussionen](https://discuss.d2l.ai/t/29)
+[Discussions](https://discuss.d2l.ai/t/29)
 :end_tab:
 
 :begin_tab:`tensorflow`
-[Diskussionen](https://discuss.d2l.ai/t/195)
+[Discussions](https://discuss.d2l.ai/t/195)
 :end_tab:

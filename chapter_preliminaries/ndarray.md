@@ -1,4 +1,4 @@
-# Datenmanipulation
+# Manipulation von Daten
 :label:`sec_ndarray`
 
 Um etwas zu erledigen, brauchen wir eine Möglichkeit, Daten zu speichern und zu manipulieren. Im Allgemeinen gibt es zwei wichtige Dinge, die wir mit Daten tun müssen: (i) sie erfassen; und (ii) verarbeiten sie, sobald sie sich im Computer befinden. Es hat keinen Sinn, Daten ohne irgendeine Möglichkeit zu speichern, also lassen Sie uns zuerst die Hände schmutzig machen, indem wir mit synthetischen Daten spielen. Zunächst führen wir das $n$-dimensionale Array ein, das auch *tensor* genannt wird.
@@ -164,7 +164,7 @@ tf.constant([[2, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]])
 
 In diesem Buch geht es nicht um Software-Engineering. Unsere Interessen beschränken sich nicht darauf, einfach Daten von/zu Arrays zu lesen und zu schreiben. Wir wollen mathematische Operationen auf diesen Arrays durchführen. Einige der einfachsten und nützlichsten Operationen sind die *elementwise* Operationen. Diese wenden eine standardmäßige Skalaroperation auf jedes Element eines Arrays an. Für Funktionen, die zwei Arrays als Eingaben verwenden, wenden elementweise Operationen einen standardmäßigen binären Operator auf jedes Paar von entsprechenden Elementen aus den beiden Arrays an. Wir können eine elementweise Funktion aus jeder Funktion erstellen, die von einem Skalar zu einem Skalar abbildet.
 
-In der mathematischen Notation würden wir einen solchen *unary* skalaren Operator (wobei eine Eingabe erfolgt) durch die Signatur $f: \mathbb{R} \rightarrow \mathbb{R}$ bezeichnen. Dies bedeutet nur, dass die Funktion von jeder reellen Zahl ($\mathbb{R}$) auf eine andere abbildet. Ebenso bezeichnen wir einen *binär* skalaren Operator (wobei zwei reale Eingaben verwendet werden und eine Ausgabe ergibt) durch die Signatur $f: \mathbb{R}, \mathbb{R} \rightarrow \mathbb{R}$. Angesichts der beiden Vektoren $f$1 und $f$0 *gleicher Form* und eines binären Operators $f$ können wir einen Vektor $\mathbf{c} = F(\mathbf{u},\mathbf{v})$ erzeugen, indem wir $f$3 für alle $i$ setzen, wobei $c_i, u_i$ und $v_i$ die $i^\mathrm{th}$ Elemente der Vektoren $\mathbf{c}, \mathbf{u}$ und $f$0 sind. Hier haben wir den Vektorwert $f$2 erzeugt, indem wir die Skalarfunktion zu einer elementweisen Vektoroperation heben*.
+In der mathematischen Notation würden wir einen solchen *unary* skalaren Operator (wobei eine Eingabe erfolgt) durch die Signatur $f: \mathbb{R} \rightarrow \mathbb{R}$ bezeichnen. Dies bedeutet nur, dass die Funktion von jeder reellen Zahl ($\mathbb{R}$) auf eine andere abbildet. Ebenso bezeichnen wir einen *binär* skalaren Operator (wobei zwei reale Eingaben verwendet werden und eine Ausgabe ergibt) durch die Signatur $f: \mathbb{R}, \mathbb{R} \rightarrow \mathbb{R}$. Angesichts der beiden Vektoren $\mathbf{u}$ und $\mathbf{v}$ *gleicher Form* und eines binären Operators $f$ können wir einen Vektor $\mathbf{c} = F(\mathbf{u},\mathbf{v})$ erzeugen, indem wir $\mathbf{v}$1 für alle $i$ setzen, wobei $\mathbf{v}$3 und $v_i$ die $\mathbf{v}$2 Elemente der Vektoren $\mathbf{c}, \mathbf{u}$ und $\mathbf{v}$ sind. Hier haben wir den Vektorwert $\mathbf{v}$0 erzeugt, indem wir die Skalarfunktion zu einer elementweisen Vektoroperation heben*.
 
 Die üblichen standardmäßigen arithmetischen Operatoren (`+`, `-`, `*`, `/` und `**`) wurden alle zu elementweisen Operationen für identisch geformte Tensoren beliebiger Form gehoben. Wir können elementweise Operationen an zwei zwei Tensoren derselben Form aufrufen. Im folgenden Beispiel verwenden wir Kommas, um ein 5-Element-Tupel zu formulieren, wobei jedes Element das Ergebnis einer elementweisen Operation ist.
 
@@ -206,7 +206,7 @@ tf.exp(x)
 
 Neben elementweisen Berechnungen können wir auch lineare Algebraoperationen durchführen, einschließlich Vektorpunktprodukte und Matrixmultiplikation. Wir erklären die entscheidenden Bits der linearen Algebra (ohne angenommene Vorkenntnisse) in:numref:`sec_linear-algebra`.
 
-Wir können auch mehrere Tensoren miteinander verketten, indem wir sie Ende-zu-Ende stapeln, um einen größeren Tensor zu bilden. Wir müssen nur eine Liste von Tensoren bereitstellen und dem System mitteilen, entlang welcher Achse verkettet werden soll. Das folgende Beispiel zeigt, was passiert, wenn wir zwei Matrizen entlang der Zeilen (Achse 0, das erste Element der Form) im Vergleich zu Spalten (Achse 1, das zweite Element der Form) verketten. Wir können sehen, dass die Achsen-0-Länge des ersten Ausgangstensors ($6$) die Summe der Achsen-0-Längen der beiden Eingangstensoren ($3 + 3$) ist; während die Achse-1-Länge des zweiten Ausgangstensors ($8$) die Summe der Achsen-1-Längen der beiden Eingangstensoren ist ($4 + 4$).
+Wir können auch mehrere Tensoren miteinander verketten, indem wir sie Ende-zu-Ende stapeln, um einen größeren Tensor zu bilden. Wir müssen nur eine Liste von Tensoren bereitstellen und dem System mitteilen, entlang welcher Achse verkettet werden soll. Das folgende Beispiel zeigt, was passiert, wenn wir zwei Matrizen entlang der Zeilen (Achse 0, das erste Element der Form) im Vergleich zu Spalten (Achse 1, das zweite Element der Form) verketten. Wir können sehen, dass die Achsen-0-Länge des ersten Ausgangstensors ($6$) die Summe der Achsen-0-Längen der beiden Eingangstensoren ist ($3 + 3$); während die Achse-1-Länge des zweiten Ausgangstensors ($8$) die Summe der Achsen-1-Längen der beiden Eingangstensoren ist ($4 + 4$).
 
 ```{.python .input}
 x = np.arange(12).reshape(3, 4)
@@ -247,7 +247,7 @@ x.sum()
 tf.reduce_sum(x)
 ```
 
-## Rundfunk-Mechanismus
+## Rundfunkmechanismus
 :label:`subsec_broadcasting`
 
 Im obigen Abschnitt haben wir gesehen, wie man elementweise Operationen an zwei Tensoren derselben Form durchführt. Unter bestimmten Bedingungen, auch wenn Formen unterschiedlich sind, können wir immer noch elementweise Operationen durchführen, indem wir den *Rundfunkmechanismus* aufrufen. Dieser Mechanismus funktioniert wie folgt: Erweitern Sie zunächst ein oder beide Arrays, indem Sie Elemente entsprechend kopieren, so dass die beiden Tensoren nach dieser Transformation die gleiche Form haben. Zweitens führen Sie die elementweisen Operationen auf die resultierenden Arrays aus.
@@ -330,7 +330,7 @@ x_var[0:2,:].assign(tf.ones(x_var[0:2,:].shape, dtype = tf.float32)*12)
 x_var
 ```
 
-## Speicherkapazität sparen
+## Speicherkapazität speichern
 
 Ausführen von Vorgängen kann dazu führen, dass neuen Speicher den Host-Ergebnissen zugewiesen wird. Wenn wir beispielsweise `y = x + y` schreiben, werden wir den Tensor dereferenzieren, den `y` verwendet hat, um auf den neu zugewiesenen Speicher zu zeigen, und stattdessen `y` zu zeigen. Im folgenden Beispiel demonstrieren wir dies mit Pythons `id()` Funktion, die uns die genaue Adresse des referenzierten Objekts im Speicher gibt. Nachdem wir `y = y + x` ausgeführt haben, werden wir feststellen, dass `id(y)` auf einen anderen Standort verweist. Das liegt daran, dass Python zuerst `y + x` auswertet, neuen Speicher für das Ergebnis zuweist und dann `y` auf diesen neuen Speicherort im Speicher verweist.
 
@@ -381,7 +381,7 @@ Wenn der Wert von `x` bei nachfolgenden Berechnungen nicht wiederverwendet wird,
 :begin_tab:`tensorflow`
 Selbst wenn Sie den Status dauerhaft in einem `Variable` speichern, können Sie die Speicherauslastung weiter reduzieren, indem Sie überschüssige Zuweisungen für Tensoren vermeiden, die nicht Ihre Modellparameter sind.
 
-Da TensorFlow `Tensors` unveränderlich sind und Verläufe nicht durch `Variable`-Zuweisungen fließen, bietet TensorFlow keine explizite Möglichkeit, einen einzelnen Vorgang direkt auszuführen.
+Da TensorFlow `Tensors` unveränderlich sind und Verläufe nicht durch `Variable` Zuweisungen fließen, bietet TensorFlow keine explizite Möglichkeit, einen einzelnen Vorgang direkt auszuführen.
 
 TensorFlow stellt jedoch den `tf.function` Dekorator bereit, um die Berechnung innerhalb eines TensorFlow-Graphen zu umbrechen, das vor der Ausführung kompiliert und optimiert wird. Auf diese Weise kann TensorFlow ungenutzte Werte beschneiden und vorherige Zuordnungen wiederverwenden, die nicht mehr benötigt werden. Dadurch wird der Speicheraufwand von TensorFlow-Berechnungen minimiert.
 :end_tab:
@@ -455,16 +455,17 @@ a, a.item(), float(a), int(a)
 
 ## Übungen
 
-1. Führen Sie den Code in diesem Abschnitt aus. Ändern Sie die bedingte Anweisung `x == y` in diesem Abschnitt in `x < y` oder `x > y`, und sehen Sie dann, welche Art von Tensor Sie erhalten können. 1. Ersetzen Sie die beiden Tensoren, die nach Element im Rundfunkmechanismus arbeiten, durch andere Formen, z.B. dreidimensionale Tensoren. Ist das Ergebnis das gleiche wie erwartet?
+1. Führen Sie den Code in diesem Abschnitt aus. Ändern Sie die bedingte Anweisung `x == y` in diesem Abschnitt in `x < y` oder `x > y`, und sehen Sie dann, welche Art von Tensor Sie erhalten können.
+1. Ersetzen Sie die beiden Tensoren, die nach Element im Rundfunkmechanismus arbeiten, durch andere Formen, z.B. dreidimensionale Tensoren. Ist das Ergebnis das gleiche wie erwartet?
 
 :begin_tab:`mxnet`
-[Diskussionen](https://discuss.d2l.ai/t/26)
+[Discussions](https://discuss.d2l.ai/t/26)
 :end_tab:
 
 :begin_tab:`pytorch`
-[Diskussionen](https://discuss.d2l.ai/t/27)
+[Discussions](https://discuss.d2l.ai/t/27)
 :end_tab:
 
 :begin_tab:`tensorflow`
-[Diskussionen](https://discuss.d2l.ai/t/187)
+[Discussions](https://discuss.d2l.ai/t/187)
 :end_tab:
