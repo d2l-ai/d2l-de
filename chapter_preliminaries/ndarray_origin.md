@@ -1,8 +1,3 @@
----
-source: https://github.com/d2l-ai/d2l-en/blob/master/chapter_preliminaries/ndarray.md
-commit: 9e55a9c
----
-
 # Data Manipulation
 :label:`sec_ndarray`
 

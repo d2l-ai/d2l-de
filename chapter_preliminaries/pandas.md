@@ -1,11 +1,11 @@
 # Vorverarbeitung von Daten
 :label:`sec_pandas`
 
-Bisher haben wir eine Vielzahl von Techniken eingeführt, um Daten zu manipulieren, die bereits in Tensoren gespeichert sind. Um Deep Learning auf die Lösung von realen Problemen anzuwenden, beginnen wir oft mit der Vorverarbeitung von Rohdaten, anstatt mit den gut vorbereiteten Daten im Tensor-Format. Unter den gängigen Datenanalyse-Tools in Python wird das Paket `pandas` häufig verwendet. Wie viele andere Erweiterungspakete im riesigen Python-Ökosystem kann `pandas` mit Tensoren zusammenarbeiten. So werden wir kurz Schritte zur Vorverarbeitung von Rohdaten mit `pandas` durchlaufen und in das Tensor-Format konvertieren. Wir werden mehr Datenvorverarbeitung Techniken in späteren Kapiteln abdecken.
+Bisher haben wir eine Vielzahl von Techniken eingeführt, um Daten zu manipulieren, die bereits in Tensoren gespeichert sind. Um Deep Learning auf die Lösung von realen Problemen anzuwenden, beginnen wir oft mit der Vorverarbeitung von Rohdaten, anstatt mit den gut vorbereiteten Daten im Tensor-Format. Unter den gängigen Datenanalyse-Tools in Python wird das Paket `pandas` häufig verwendet. Wie viele andere Erweiterungspakete im riesigen Ökosystem von Python kann `pandas` mit Tensoren zusammenarbeiten. So werden wir kurz Schritte zur Vorverarbeitung von Rohdaten mit `pandas` durchlaufen und in das Tensor-Format konvertieren. Wir werden mehr Datenvorverarbeitung Techniken in späteren Kapiteln abdecken.
 
 ## Lesen des Datensatzes
 
-Als Beispiel erstellen wir zunächst ein künstliches Dataset, das in einer CSV-Datei (kommagetrennte Werte) `../data/house_tiny.csv` gespeichert ist. Daten, die in anderen Formaten gespeichert werden, können auf ähnliche Weise verarbeitet werden. Die folgende Funktion `mkdir_if_not_exist` stellt sicher, dass das Verzeichnis `../data` vorhanden ist. Beachten Sie, dass der Kommentar `# @save `eine spezielle Markierung ist, bei der die folgende Funktion, Klasse oder Anweisungen im `d2l` Paket gespeichert werden, sodass sie später direkt aufgerufen werden können (z. B. `d2l.mkdir_if_not_exist(path)`), ohne neu definiert zu werden.
+Als Beispiel erstellen wir zunächst ein künstliches Dataset, das in einer CSV-Datei (kommagetrennte Werte) `../data/house_tiny.csv` gespeichert ist. Daten, die in anderen Formaten gespeichert werden, können auf ähnliche Weise verarbeitet werden. Die folgende Funktion `mkdir_if_not_exist` stellt sicher, dass das Verzeichnis `../data` vorhanden ist. Beachten Sie, dass der Kommentar `# @save `eine spezielle Markierung ist, bei der die folgende Funktion, Klasse oder Anweisungen im `d2l`-Paket gespeichert werden, sodass sie später direkt aufgerufen werden können (z. B. `d2l.mkdir_if_not_exist(path)`), ohne neu definiert zu werden.
 
 ```{.python .input}
 #@tab all
@@ -49,7 +49,7 @@ print(data)
 
 Beachten Sie, dass „NaN“ -Einträge Werte fehlen. Um fehlende Daten zu verarbeiten, umfassen typische Methoden *imputation* und *deletion*, wobei die Imputation fehlende Werte durch substituierte ersetzt, während beim Löschen fehlende Werte ignoriert werden. Hier werden wir die Zuordnung betrachten.
 
-Durch die Integer-Location-basierte Indizierung (`iloc`) teilen wir `data` in `inputs` und `outputs` auf, wobei erstere die ersten beiden Spalten übernimmt, während letztere nur die letzte Spalte behält. Für numerische Werte in `inputs`, die fehlen, ersetzen wir die „NaN“ -Einträge durch den Mittelwert derselben Spalte.
+Durch die Integer-Location-basierte Indizierung (`iloc`) teilen wir `data` in `inputs` und `outputs` auf, wobei erstere die ersten beiden Spalten nimmt, während letztere nur die letzte Spalte behält. Für numerische Werte in `inputs`, die fehlen, ersetzen wir die „NaN“ -Einträge durch den Mittelwert derselben Spalte.
 
 ```{.python .input}
 #@tab all
@@ -68,7 +68,7 @@ print(inputs)
 
 ## Konvertierung in das Tensor-Format
 
-Jetzt, da alle Einträge in `inputs` und `outputs` numerisch sind, können sie in das Tensor-Format konvertiert werden. Sobald Daten in diesem Format vorliegen, können sie weiter mit den Tensor-Funktionalitäten manipuliert werden, die wir in:numref:`sec_ndarray` eingeführt haben.
+Jetzt, da alle Einträge in `inputs` und `outputs` numerisch sind, können sie in das Tensor-Format konvertiert werden. Sobald Daten in diesem Format vorliegen, können sie mit den Tensor-Funktionalitäten, die wir in :numref:`sec_ndarray` eingeführt haben, weiter manipuliert werden.
 
 ```{.python .input}
 from mxnet import np
@@ -95,7 +95,7 @@ X, y
 
 ## Zusammenfassung
 
-* Wie viele andere Erweiterungspakete im riesigen Python-Ökosystem kann `pandas` mit Tensoren zusammenarbeiten.
+* Wie viele andere Erweiterungspakete im riesigen Ökosystem von Python kann `pandas` mit Tensoren zusammenarbeiten.
 * Imputation und Löschung können verwendet werden, um fehlende Daten zu behandeln.
 
 ## Übungen

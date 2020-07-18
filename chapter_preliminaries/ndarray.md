@@ -1,16 +1,16 @@
 # Manipulation von Daten
 :label:`sec_ndarray`
 
-Um etwas zu erledigen, brauchen wir eine Möglichkeit, Daten zu speichern und zu manipulieren. Im Allgemeinen gibt es zwei wichtige Dinge, die wir mit Daten tun müssen: (i) sie erfassen; und (ii) verarbeiten sie, sobald sie sich im Computer befinden. Es hat keinen Sinn, Daten ohne irgendeine Möglichkeit zu speichern, also lassen Sie uns zuerst die Hände schmutzig machen, indem wir mit synthetischen Daten spielen. Zunächst führen wir das $n$-dimensionale Array ein, das auch *tensor* genannt wird.
+Um etwas zu erledigen, brauchen wir eine Möglichkeit, Daten zu speichern und zu manipulieren. Im Allgemeinen gibt es zwei wichtige Dinge, die wir mit Daten tun müssen: (i) sie erfassen; und (ii) verarbeiten sie, sobald sie sich im Computer befinden. Es hat keinen Sinn, Daten ohne irgendeine Möglichkeit zu speichern, also lassen Sie uns zuerst die Hände schmutzig machen, indem wir mit synthetischen Daten spielen. Zunächst stellen wir das $n$-dimensionale Array vor, das auch *tensor* genannt wird.
 
-Wenn Sie mit NumPy gearbeitet haben, dem am weitesten verbreiteten wissenschaftlichen Computing-Paket in Python, dann werden Sie diesen Abschnitt vertraut finden. Unabhängig davon, welches Framework Sie verwenden, seine *tensor-Klasse* (`ndarray` in MxNet, `Tensor` in PyTorch und TensorFlow) ähnelt NumPys `ndarray` mit einigen Killer-Funktionen. Erstens wird GPU gut unterstützt, um die Berechnung zu beschleunigen, während NumPy nur CPU-Berechnung unterstützt. Zweitens unterstützt die Tensor-Klasse die automatische Differenzierung. Diese Eigenschaften machen die Tensor-Klasse für Deep Learning geeignet. Wenn wir im gesamten Buch Tensoren sagen, beziehen wir uns auf Instanzen der Tensor-Klasse, sofern nicht anders angegeben.
+Wenn Sie mit NumPy gearbeitet haben, dem am weitesten verbreiteten wissenschaftlichen Computing-Paket in Python, dann werden Sie diesen Abschnitt vertraut finden. Egal welches Framework Sie verwenden, seine *tensor-Klasse* (`ndarray` in MxNet, `Tensor` in PyTorch und TensorFlow) ähnelt NumPys `ndarray` mit einigen Killer-Funktionen. Erstens wird GPU gut unterstützt, um die Berechnung zu beschleunigen, während NumPy nur CPU-Berechnung unterstützt. Zweitens unterstützt die Tensor-Klasse die automatische Differenzierung. Diese Eigenschaften machen die Tensor-Klasse für Deep Learning geeignet. Wenn wir im gesamten Buch Tensoren sagen, beziehen wir uns auf Instanzen der Tensor-Klasse, sofern nicht anders angegeben.
 
 ## Erste Schritte
 
 In diesem Abschnitt möchten wir Sie zum Laufen bringen und Sie mit den grundlegenden mathematischen und numerischen Rechenwerkzeugen ausstatten, auf denen Sie aufbauen werden, während Sie durch das Buch fortschreiten. Mach dir keine Sorgen, wenn du Probleme hast, einige der mathematischen Konzepte oder Bibliotheksfunktionen zu grok zu machen. In den folgenden Abschnitten wird dieses Material im Kontext von praktischen Beispielen erneut behandelt und es wird sinken. Auf der anderen Seite, wenn Sie bereits einen Hintergrund haben und tiefer in den mathematischen Inhalt gehen wollen, überspringen Sie einfach diesen Abschnitt.
 
 :begin_tab:`mxnet`
-Zu Beginn importieren wir die Module `np` (`numpy`) und `npx` (`numpy_extension`) aus MXNet. Hier enthält das Modul `np` Funktionen, die von NumPy unterstützt werden, während das Modul `npx` eine Reihe von Erweiterungen enthält, die entwickelt wurden, um Deep Learning in einer numPy-ähnlichen Umgebung zu ermöglichen. Bei der Verwendung von Tensoren rufen wir fast immer die Funktion `set_np` auf: Dies dient der Kompatibilität der Tensor-Verarbeitung durch andere Komponenten von MxNet.
+Zunächst importieren wir die Module `np` (`numpy`) und `npx` (`numpy_extension`) aus MXNet. Hier enthält das Modul `np` Funktionen, die von NumPy unterstützt werden, während das Modul `npx` eine Reihe von Erweiterungen enthält, die entwickelt wurden, um Deep Learning in einer numPy-ähnlichen Umgebung zu ermöglichen. Bei der Verwendung von Tensoren rufen wir fast immer die Funktion `set_np` auf: Dies dient der Kompatibilität der Tensor-Verarbeitung durch andere Komponenten von MxNet.
 :end_tab:
 
 :begin_tab:`pytorch`
@@ -57,7 +57,7 @@ x = tf.range(12)
 x
 ```
 
-Wir können auf die *Form* eines Tensors zugreifen (die Länge entlang jeder Achse), indem wir seine `shape` Eigenschaft überprüfen.
+Wir können auf die *Form* eines Tensors zugreifen (die Länge entlang jeder Achse), indem wir seine `shape` Eigenschaft inspizieren.
 
 ```{.python .input}
 #@tab all
@@ -80,7 +80,7 @@ x.numel()
 tf.size(x)
 ```
 
-Um die Form eines Tensors zu ändern, ohne entweder die Anzahl der Elemente oder deren Werte zu ändern, können wir die Funktion `reshape` aufrufen. Zum Beispiel können wir unseren Tensor, `x`, von einem Zeilenvektor mit Form (12,) in eine Matrix mit Form (3, 4) transformieren. Dieser neue Tensor enthält die exakt gleichen Werte, sieht sie aber als Matrix aus, die als 3 Zeilen und 4 Spalten organisiert ist. Um zu wiederholen, obwohl sich die Form geändert hat, haben die Elemente in `x` nicht. Beachten Sie, dass die Größe durch Umformen unverändert bleibt.
+Um die Form eines Tensors zu ändern, ohne entweder die Anzahl der Elemente oder deren Werte zu verändern, können wir die Funktion `reshape` aufrufen. Zum Beispiel können wir unseren Tensor, `x`, von einem Zeilenvektor mit Form (12,) in eine Matrix mit Form (3, 4) transformieren. Dieser neue Tensor enthält die exakt gleichen Werte, sieht sie aber als Matrix aus, die als 3 Zeilen und 4 Spalten organisiert ist. Um zu wiederholen, obwohl sich die Form geändert hat, haben die Elemente in `x` nicht. Beachten Sie, dass die Größe durch Umformen unverändert bleibt.
 
 ```{.python .input}
 #@tab mxnet, pytorch
@@ -94,7 +94,7 @@ x = tf.reshape(x, (3, 4))
 x
 ```
 
-Eine Umformung durch manuelles Angeben jeder Dimension ist nicht erforderlich. Wenn unsere Zielform eine Matrix mit Form (Höhe, Breite) ist, dann wird die Höhe implizit angegeben, nachdem wir die Breite kennen. Warum sollten wir die Division selbst durchführen müssen? Im obigen Beispiel, um eine Matrix mit 3 Zeilen zu erhalten, haben wir beide angegeben, dass es 3 Zeilen und 4 Spalten haben sollte. Glücklicherweise können Tensoren bei der restlichen Bemaßung automatisch eine Dimension ausarbeiten. Wir rufen diese Fähigkeit auf, indem wir `-1` für die Dimension platzieren, die Tensoren automatisch ableiten sollen. In unserem Fall hätten wir, anstatt `x.reshape(3, 4)` aufzurufen, gleichwertig `x.reshape(-1, 4)` oder `x.reshape(3, -1)` genannt werden können.
+Eine Umformung durch manuelles Angeben jeder Dimension ist nicht erforderlich. Wenn unsere Zielform eine Matrix mit Form (Höhe, Breite) ist, dann wird die Höhe implizit angegeben, nachdem wir die Breite kennen. Warum sollten wir die Division selbst durchführen müssen? Im obigen Beispiel, um eine Matrix mit 3 Zeilen zu erhalten, haben wir beide angegeben, dass es 3 Zeilen und 4 Spalten haben sollte. Glücklicherweise können Tensoren bei der restlichen Bemaßung automatisch eine Dimension ausarbeiten. Wir rufen diese Fähigkeit auf, indem wir `-1` für die Dimension platzieren, die Tensoren automatisch ableiten sollen. In unserem Fall hätten wir anstelle von `x.reshape(3, 4)` gleichwertig `x.reshape(-1, 4)` oder `x.reshape(3, -1)` genannt werden können.
 
 In der Regel möchten wir, dass unsere Matrizen entweder mit Nullen, Einsen, einigen anderen Konstanten oder Zahlen initialisiert werden, die zufällig aus einer bestimmten Verteilung abgetastet werden. Wir können einen Tensor, der einen Tensor darstellt, mit allen Elementen auf 0 und eine Form von (2, 3, 4) wie folgt erstellen:
 
@@ -164,9 +164,9 @@ tf.constant([[2, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]])
 
 In diesem Buch geht es nicht um Software-Engineering. Unsere Interessen beschränken sich nicht darauf, einfach Daten von/zu Arrays zu lesen und zu schreiben. Wir wollen mathematische Operationen auf diesen Arrays durchführen. Einige der einfachsten und nützlichsten Operationen sind die *elementwise* Operationen. Diese wenden eine standardmäßige Skalaroperation auf jedes Element eines Arrays an. Für Funktionen, die zwei Arrays als Eingaben verwenden, wenden elementweise Operationen einen standardmäßigen binären Operator auf jedes Paar von entsprechenden Elementen aus den beiden Arrays an. Wir können eine elementweise Funktion aus jeder Funktion erstellen, die von einem Skalar zu einem Skalar abbildet.
 
-In der mathematischen Notation würden wir einen solchen *unary* skalaren Operator (wobei eine Eingabe erfolgt) durch die Signatur $f: \mathbb{R} \rightarrow \mathbb{R}$ bezeichnen. Dies bedeutet nur, dass die Funktion von jeder reellen Zahl ($\mathbb{R}$) auf eine andere abbildet. Ebenso bezeichnen wir einen *binär* skalaren Operator (wobei zwei reale Eingaben verwendet werden und eine Ausgabe ergibt) durch die Signatur $f: \mathbb{R}, \mathbb{R} \rightarrow \mathbb{R}$. Angesichts der beiden Vektoren $\mathbf{u}$ und $\mathbf{v}$ *gleicher Form* und eines binären Operators $f$ können wir einen Vektor $\mathbf{c} = F(\mathbf{u},\mathbf{v})$ erzeugen, indem wir $\mathbf{v}$1 für alle $i$ setzen, wobei $\mathbf{v}$3 und $v_i$ die $\mathbf{v}$2 Elemente der Vektoren $\mathbf{c}, \mathbf{u}$ und $\mathbf{v}$ sind. Hier haben wir den Vektorwert $\mathbf{v}$0 erzeugt, indem wir die Skalarfunktion zu einer elementweisen Vektoroperation heben*.
+In der mathematischen Notation würden wir einen solchen *unary* skalaren Operator (wobei eine Eingabe erfolgt) durch die Signatur $f: \mathbb{R} \rightarrow \mathbb{R}$ bezeichnen. Dies bedeutet nur, dass die Funktion von jeder reellen Zahl ($\mathbb{R}$) auf eine andere abbildet. Ebenso bezeichnen wir einen *binär* skalaren Operator (wobei zwei reale Eingaben verwendet werden und eine Ausgabe ergibt) durch die Signatur $f: \mathbb{R}, \mathbb{R} \rightarrow \mathbb{R}$. Angesichts von zwei Vektoren $\mathbf{u}$ und $\mathbf{v}$ *gleicher Form* und einem binären Operator $f$ können wir einen Vektor $\mathbf{c} = F(\mathbf{u},\mathbf{v})$ erzeugen, indem wir $c_i \gets f(u_i, v_i)$ für alle $i$ einstellen, wobei $c_i, u_i$ und $v_i$ die $i^\mathrm{th}$ Elemente der Vektoren $\mathbf{c}, \mathbf{u}$ und $\mathbf{v}$ sind. Hier haben wir den Vektorwert $F: \mathbb{R}^d, \mathbb{R}^d \rightarrow \mathbb{R}^d$ erzeugt, indem wir die Skalarfunktion zu einer elementweisen Vektoroperation heben*.
 
-Die üblichen standardmäßigen arithmetischen Operatoren (`+`, `-`, `*`, `/` und `**`) wurden alle zu elementweisen Operationen für identisch geformte Tensoren beliebiger Form gehoben. Wir können elementweise Operationen an zwei zwei Tensoren derselben Form aufrufen. Im folgenden Beispiel verwenden wir Kommas, um ein 5-Element-Tupel zu formulieren, wobei jedes Element das Ergebnis einer elementweisen Operation ist.
+Die üblichen Standard-arithmetischen Operatoren (`+`, `-`, `*`, `/` und `**`) wurden alle zu elementweisen Operationen für identisch geformte Tensoren beliebiger Form angehoben. Wir können elementweise Operationen an zwei zwei Tensoren derselben Form aufrufen. Im folgenden Beispiel verwenden wir Kommas, um ein 5-Element-Tupel zu formulieren, wobei jedes Element das Ergebnis einer elementweisen Operation ist.
 
 ```{.python .input}
 x = np.array([1, 2, 4, 8])
@@ -204,7 +204,7 @@ torch.exp(x)
 tf.exp(x)
 ```
 
-Neben elementweisen Berechnungen können wir auch lineare Algebraoperationen durchführen, einschließlich Vektorpunktprodukte und Matrixmultiplikation. Wir erklären die entscheidenden Bits der linearen Algebra (ohne angenommene Vorkenntnisse) in:numref:`sec_linear-algebra`.
+Neben elementweisen Berechnungen können wir auch lineare Algebraoperationen durchführen, einschließlich Vektorpunktprodukte und Matrixmultiplikation. Wir werden die entscheidenden Bits der linearen Algebra (ohne angenommene Vorkenntnisse) in :numref:`sec_linear-algebra` erklären.
 
 Wir können auch mehrere Tensoren miteinander verketten, indem wir sie Ende-zu-Ende stapeln, um einen größeren Tensor zu bilden. Wir müssen nur eine Liste von Tensoren bereitstellen und dem System mitteilen, entlang welcher Achse verkettet werden soll. Das folgende Beispiel zeigt, was passiert, wenn wir zwei Matrizen entlang der Zeilen (Achse 0, das erste Element der Form) im Vergleich zu Spalten (Achse 1, das zweite Element der Form) verketten. Wir können sehen, dass die Achsen-0-Länge des ersten Ausgangstensors ($6$) die Summe der Achsen-0-Längen der beiden Eingangstensoren ist ($3 + 3$); während die Achse-1-Länge des zweiten Ausgangstensors ($8$) die Summe der Achsen-1-Längen der beiden Eingangstensoren ist ($4 + 4$).
 
@@ -228,7 +228,7 @@ y = tf.constant([[2.0, 1, 4, 3], [1, 2, 3, 4], [4, 3, 2, 1]])
 tf.concat([x, y], axis=0), tf.concat([x, y], axis=1)
 ```
 
-Manchmal wollen wir einen binären Tensor über *logische Anweisungen* konstruieren. Nehmen Sie `x == y` als Beispiel. Wenn für jede Position `x` und `y` an dieser Position gleich sind, nimmt der entsprechende Eintrag im neuen Tensor den Wert 1 an, was bedeutet, dass die logische Anweisung `x == y` an dieser Position wahr ist; andernfalls nimmt diese Position 0 an.
+Manchmal wollen wir einen binären Tensor über *logische Anweisungen* konstruieren. Nehmen Sie `x == y` als Beispiel. Wenn für jede Position `x` und `y` an dieser Position gleich sind, nimmt der entsprechende Eintrag im neuen Tensor den Wert 1 an, was bedeutet, dass die logische Aussage `x == y` an dieser Position wahr ist; andernfalls nimmt diese Position 0 an.
 
 ```{.python .input}
 #@tab all
@@ -274,7 +274,7 @@ b = tf.reshape(tf.range(2), (1, 2))
 a, b
 ```
 
-Da `a` und `b` $3\times1$ bzw. $1\times2$ Matrizen sind, stimmen ihre Shapes nicht überein, wenn wir sie hinzufügen möchten. Wir übertragen* die Einträge beider Matrizen in eine größere $3\times2$ Matrix wie folgt: Für die Matrix `a` repliziert sie die Spalten und für die Matrix `b` repliziert sie die Zeilen, bevor sie beide elementweise addieren.
+Da `a` und `b` $3\times1$ bzw. $1\times2$ Matrizen sind, stimmen ihre Formen nicht überein, wenn wir sie hinzufügen möchten. Wir *übertragen* die Einträge beider Matrizen in eine größere $3\times2$ Matrix wie folgt: Für die Matrix `a` repliziert sie die Spalten und für die Matrix `b` repliziert sie die Zeilen, bevor sie beide elementweise addieren.
 
 ```{.python .input}
 #@tab all
@@ -299,7 +299,7 @@ x[-1], x[1:3]
 :begin_tab:`tensorflow`
 `Tensors` in TensorFlow sind unveränderlich und können nicht zugewiesen werden. `Variables` in TensorFlow sind veränderbare Zustandscontainer, die Zuweisungen unterstützen. Beachten Sie, dass Verläufe in TensorFlow nicht rückwärts durch `Variable` Zuweisungen fließen.
 
-Über die Zuweisung eines Wertes auf die gesamte `Variable` hinaus können wir Elemente eines `Variable` schreiben, indem wir Indizes angeben.
+Über die Zuweisung eines Wertes auf die gesamte `Variable` hinaus können wir Elemente eines `Variable` durch Angabe von Indizes schreiben.
 :end_tab:
 
 ```{.python .input}
@@ -315,7 +315,7 @@ x_var[1, 2].assign(9)
 x_var
 ```
 
-Wenn wir mehreren Elementen den gleichen Wert zuweisen möchten, indizieren wir einfach alle von ihnen und weisen ihnen dann den Wert zu. Beispielsweise greift `[0:2, :]` auf die erste und zweite Zeile zu, wobei `:` alle Elemente entlang der Achse 1 (Spalte) übernimmt. Während wir die Indizierung für Matrizen besprochen haben, funktioniert dies natürlich auch für Vektoren und für Tensoren von mehr als 2 Dimensionen.
+Wenn wir mehreren Elementen den gleichen Wert zuweisen möchten, indizieren wir einfach alle von ihnen und weisen ihnen dann den Wert zu. Zum Beispiel greift `[0:2, :]` auf die erste und zweite Zeile zu, wobei `:` alle Elemente entlang Achse 1 (Spalte) nimmt. Während wir die Indizierung für Matrizen besprochen haben, funktioniert dies natürlich auch für Vektoren und für Tensoren von mehr als 2 Dimensionen.
 
 ```{.python .input}
 #@tab mxnet, pytorch
@@ -332,7 +332,7 @@ x_var
 
 ## Speicherkapazität speichern
 
-Ausführen von Vorgängen kann dazu führen, dass neuen Speicher den Host-Ergebnissen zugewiesen wird. Wenn wir beispielsweise `y = x + y` schreiben, werden wir den Tensor dereferenzieren, den `y` verwendet hat, um auf den neu zugewiesenen Speicher zu zeigen, und stattdessen `y` zu zeigen. Im folgenden Beispiel demonstrieren wir dies mit Pythons `id()` Funktion, die uns die genaue Adresse des referenzierten Objekts im Speicher gibt. Nachdem wir `y = y + x` ausgeführt haben, werden wir feststellen, dass `id(y)` auf einen anderen Standort verweist. Das liegt daran, dass Python zuerst `y + x` auswertet, neuen Speicher für das Ergebnis zuweist und dann `y` auf diesen neuen Speicherort im Speicher verweist.
+Ausführen von Vorgängen kann dazu führen, dass neuen Speicher den Host-Ergebnissen zugewiesen wird. Wenn wir beispielsweise `y = x + y` schreiben, werden wir den Tensor dereferenzieren, den `y` verwendet hat, um auf den neu zugewiesenen Speicher zu verweisen und stattdessen `y` zu verweisen. Im folgenden Beispiel demonstrieren wir dies mit Pythons `id()`-Funktion, die uns die genaue Adresse des referenzierten Objekts im Speicher gibt. Nach dem Ausführen von `y = y + x` werden wir feststellen, dass `id(y)` auf einen anderen Standort zeigt. Das liegt daran, dass Python zuerst `y + x` auswertet, neuen Speicher für das Ergebnis zuweist und dann `y` auf diesen neuen Speicherort im Speicher verweist.
 
 ```{.python .input}
 #@tab all
@@ -344,7 +344,7 @@ id(y) == before
 Dies kann aus zwei Gründen unerwünscht sein. Erstens wollen wir nicht ständig Speicher unnötig zuweisen. Beim maschinellen Lernen haben wir möglicherweise Hunderte von Megabyte an Parametern und aktualisieren sie alle mehrmals pro Sekunde. In der Regel möchten wir diese Aktualisierungen*an Ort und Stelle durchführen*. Zweitens könnten wir auf die gleichen Parameter aus mehreren Variablen zeigen. Wenn wir nicht an Ort und Stelle aktualisieren, zeigen andere Referenzen immer noch auf den alten Speicherort, was es ermöglicht, dass Teile unseres Codes versehentlich veraltete Parameter referenzieren.
 
 :begin_tab:`mxnet, pytorch`
-Glücklicherweise ist die Durchführung von In-Place-Operationen einfach. Wir können das Ergebnis einer Operation einem zuvor zugewiesenen Array mit Slice-Notation zuweisen, z.B. `y[:] = <expression>`. Um dieses Konzept zu veranschaulichen, erstellen wir zunächst eine neue Matrix `z` mit der gleichen Form wie ein anderer `y`, wobei `zeros_like` verwendet wird, um einen Block von $0$ Einträgen zuzuweisen.
+Glücklicherweise ist die Durchführung von In-Place-Operationen einfach. Wir können das Ergebnis einer Operation einem zuvor zugewiesenen Array mit Slice-Notation zuweisen, z. B. `y[:] = <expression>`. Um dieses Konzept zu veranschaulichen, erstellen wir zunächst eine neue Matrix `z` mit der gleichen Form wie ein anderer `y`, mit `zeros_like`, um einen Block von $0$ Einträgen zuzuweisen.
 :end_tab:
 
 :begin_tab:`tensorflow`
@@ -379,9 +379,9 @@ Wenn der Wert von `x` bei nachfolgenden Berechnungen nicht wiederverwendet wird,
 :end_tab:
 
 :begin_tab:`tensorflow`
-Selbst wenn Sie den Status dauerhaft in einem `Variable` speichern, können Sie die Speicherauslastung weiter reduzieren, indem Sie überschüssige Zuweisungen für Tensoren vermeiden, die nicht Ihre Modellparameter sind.
+Selbst wenn Sie den Status dauerhaft in einem `Variable` speichern, können Sie Ihre Speicherauslastung weiter reduzieren, indem Sie überschüssige Zuweisungen für Tensoren vermeiden, die nicht Ihre Modellparameter sind.
 
-Da TensorFlow `Tensors` unveränderlich sind und Verläufe nicht durch `Variable` Zuweisungen fließen, bietet TensorFlow keine explizite Möglichkeit, einen einzelnen Vorgang direkt auszuführen.
+Da TensorFlow `Tensors` unveränderlich sind und Verläufe nicht durch `Variable`-Zuweisungen fließen, bietet TensorFlow keine explizite Möglichkeit, einen einzelnen Vorgang direkt auszuführen.
 
 TensorFlow stellt jedoch den `tf.function` Dekorator bereit, um die Berechnung innerhalb eines TensorFlow-Graphen zu umbrechen, das vor der Ausführung kompiliert und optimiert wird. Auf diese Weise kann TensorFlow ungenutzte Werte beschneiden und vorherige Zuordnungen wiederverwenden, die nicht mehr benötigt werden. Dadurch wird der Speicheraufwand von TensorFlow-Berechnungen minimiert.
 :end_tab:
@@ -455,7 +455,7 @@ a, a.item(), float(a), int(a)
 
 ## Übungen
 
-1. Führen Sie den Code in diesem Abschnitt aus. Ändern Sie die bedingte Anweisung `x == y` in diesem Abschnitt in `x < y` oder `x > y`, und sehen Sie dann, welche Art von Tensor Sie erhalten können.
+1. Führen Sie den Code in diesem Abschnitt aus. Ändern Sie die bedingte Anweisung `x == y` in diesem Abschnitt auf `x < y` oder `x > y`, und sehen Sie dann, welche Art von Tensor Sie erhalten können.
 1. Ersetzen Sie die beiden Tensoren, die nach Element im Rundfunkmechanismus arbeiten, durch andere Formen, z.B. dreidimensionale Tensoren. Ist das Ergebnis das gleiche wie erwartet?
 
 :begin_tab:`mxnet`
